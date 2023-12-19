@@ -1,0 +1,2 @@
+loadFile("a.mo");
+simulate(a);

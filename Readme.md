@@ -1,0 +1,1 @@
+本人学习Modelica以及OpenModelica相关内容的笔记
