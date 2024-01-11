@@ -98,7 +98,196 @@ algorithm
   end match;
 end lm_4;
 
-protected function lm_5
+protected function smf_5
+  input Tpl.Text in_txt;
+  input Integer in_it;
+
+  output Tpl.Text out_txt;
+algorithm
+  out_txt :=
+  match(in_txt, in_it)
+    local
+      Tpl.Text txt;
+      Integer i_it;
+
+    case ( txt,
+           i_it )
+      equation
+        txt = Tpl.writeStr(txt, intString(i_it));
+        txt = Tpl.nextIter(txt);
+      then txt;
+  end match;
+end smf_5;
+
+protected function smf_6
+  input Tpl.Text in_txt;
+  input Integer in_it;
+
+  output Tpl.Text out_txt;
+algorithm
+  out_txt :=
+  match(in_txt, in_it)
+    local
+      Tpl.Text txt;
+      Integer i_it;
+
+    case ( txt,
+           i_it )
+      equation
+        txt = Tpl.writeStr(txt, intString(i_it));
+        txt = Tpl.nextIter(txt);
+      then txt;
+  end match;
+end smf_6;
+
+protected function smf_7
+  input Tpl.Text in_txt;
+  input Integer in_it;
+
+  output Tpl.Text out_txt;
+algorithm
+  out_txt :=
+  match(in_txt, in_it)
+    local
+      Tpl.Text txt;
+      Integer i_it;
+
+    case ( txt,
+           i_it )
+      equation
+        txt = Tpl.writeStr(txt, intString(i_it));
+        txt = Tpl.nextIter(txt);
+      then txt;
+  end match;
+end smf_7;
+
+protected function smf_8
+  input Tpl.Text in_txt;
+  input Tpl.StringToken in_it;
+
+  output Tpl.Text out_txt;
+algorithm
+  out_txt :=
+  match(in_txt, in_it)
+    local
+      Tpl.Text txt;
+      Tpl.StringToken i_it;
+
+    case ( txt,
+           i_it )
+      equation
+        txt = Tpl.writeTok(txt, i_it);
+        txt = Tpl.nextIter(txt);
+      then txt;
+  end match;
+end smf_8;
+
+protected function smf_9
+  input Tpl.Text in_txt;
+  input Tpl.StringToken in_it;
+
+  output Tpl.Text out_txt;
+algorithm
+  out_txt :=
+  match(in_txt, in_it)
+    local
+      Tpl.Text txt;
+      Tpl.StringToken i_it;
+
+    case ( txt,
+           i_it )
+      equation
+        txt = Tpl.writeTok(txt, i_it);
+        txt = Tpl.nextIter(txt);
+      then txt;
+  end match;
+end smf_9;
+
+protected function smf_10
+  input Tpl.Text in_txt;
+  input Tpl.StringToken in_it;
+
+  output Tpl.Text out_txt;
+algorithm
+  out_txt :=
+  match(in_txt, in_it)
+    local
+      Tpl.Text txt;
+      Tpl.StringToken i_it;
+
+    case ( txt,
+           i_it )
+      equation
+        txt = Tpl.writeTok(txt, i_it);
+        txt = Tpl.nextIter(txt);
+      then txt;
+  end match;
+end smf_10;
+
+protected function smf_11
+  input Tpl.Text in_txt;
+  input Integer in_it;
+
+  output Tpl.Text out_txt;
+algorithm
+  out_txt :=
+  match(in_txt, in_it)
+    local
+      Tpl.Text txt;
+      Integer i_it;
+
+    case ( txt,
+           i_it )
+      equation
+        txt = Tpl.writeStr(txt, intString(i_it));
+        txt = Tpl.nextIter(txt);
+      then txt;
+  end match;
+end smf_11;
+
+protected function smf_12
+  input Tpl.Text in_txt;
+  input Tpl.StringToken in_it;
+
+  output Tpl.Text out_txt;
+algorithm
+  out_txt :=
+  match(in_txt, in_it)
+    local
+      Tpl.Text txt;
+      Tpl.StringToken i_it;
+
+    case ( txt,
+           i_it )
+      equation
+        txt = Tpl.writeTok(txt, i_it);
+        txt = Tpl.nextIter(txt);
+      then txt;
+  end match;
+end smf_12;
+
+protected function smf_13
+  input Tpl.Text in_txt;
+  input Integer in_it;
+
+  output Tpl.Text out_txt;
+algorithm
+  out_txt :=
+  match(in_txt, in_it)
+    local
+      Tpl.Text txt;
+      Integer i_it;
+
+    case ( txt,
+           i_it )
+      equation
+        txt = Tpl.writeStr(txt, intString(i_it));
+        txt = Tpl.nextIter(txt);
+      then txt;
+  end match;
+end smf_13;
+
+protected function lm_14
   input Tpl.Text in_txt;
   input list<String> in_items;
 
@@ -122,10 +311,10 @@ algorithm
         txt = Tpl.writeStr(txt, i_name);
         txt = Tpl.writeTok(txt, Tpl.ST_STRING(" "));
         txt = Tpl.nextIter(txt);
-        txt = lm_5(txt, rest);
+        txt = lm_14(txt, rest);
       then txt;
   end match;
-end lm_5;
+end lm_14;
 
 public function list_2
   input Tpl.Text txt;
@@ -133,14 +322,32 @@ public function list_2
 
   output Tpl.Text out_txt;
 protected
+  Tpl.Text l_test__list0_1;
+  Tpl.Text l_test__list1;
+  Tpl.Text l_test__list0;
   Tpl.Text l_xxx__name;
 algorithm
   l_xxx__name := Tpl.pushIter(Tpl.emptyTxt, Tpl.ITER_OPTIONS(0, NONE(), SOME(Tpl.ST_STRING(", ")), 0, 0, Tpl.ST_NEW_LINE(), 0, Tpl.ST_NEW_LINE()));
   l_xxx__name := lm_4(l_xxx__name, a_names);
   l_xxx__name := Tpl.popIter(l_xxx__name);
+  l_test__list0 := Tpl.pushIter(Tpl.emptyTxt, Tpl.ITER_OPTIONS(0, NONE(), NONE(), 0, 0, Tpl.ST_NEW_LINE(), 0, Tpl.ST_NEW_LINE()));
+  l_test__list0 := smf_5(l_test__list0, 1);
+  l_test__list0 := smf_6(l_test__list0, 2);
+  l_test__list0 := smf_7(l_test__list0, 3);
+  l_test__list0 := Tpl.popIter(l_test__list0);
+  l_test__list1 := Tpl.pushIter(Tpl.emptyTxt, Tpl.ITER_OPTIONS(0, NONE(), NONE(), 0, 0, Tpl.ST_NEW_LINE(), 0, Tpl.ST_NEW_LINE()));
+  l_test__list1 := smf_8(l_test__list1, Tpl.ST_STRING("1"));
+  l_test__list1 := smf_9(l_test__list1, Tpl.ST_STRING("2"));
+  l_test__list1 := smf_10(l_test__list1, Tpl.ST_STRING("3"));
+  l_test__list1 := Tpl.popIter(l_test__list1);
+  l_test__list0_1 := Tpl.pushIter(Tpl.emptyTxt, Tpl.ITER_OPTIONS(0, NONE(), NONE(), 0, 0, Tpl.ST_NEW_LINE(), 0, Tpl.ST_NEW_LINE()));
+  l_test__list0_1 := smf_11(l_test__list0_1, 1);
+  l_test__list0_1 := smf_12(l_test__list0_1, Tpl.ST_STRING("2"));
+  l_test__list0_1 := smf_13(l_test__list0_1, 3);
+  l_test__list0_1 := Tpl.popIter(l_test__list0_1);
   out_txt := Tpl.writeTok(txt, Tpl.ST_STRING("Hello "));
   out_txt := Tpl.pushIter(out_txt, Tpl.ITER_OPTIONS(0, NONE(), SOME(Tpl.ST_STRING(", ")), 0, 0, Tpl.ST_NEW_LINE(), 0, Tpl.ST_NEW_LINE()));
-  out_txt := lm_5(out_txt, a_names);
+  out_txt := lm_14(out_txt, a_names);
   out_txt := Tpl.popIter(out_txt);
 end list_2;
 

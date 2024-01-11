@@ -15,7 +15,7 @@ record COMPLEX Real re,im; end COMPLEX;
 end Number;
 
 // construct a Number instance REAL(3.14) to hold a real number or another instance COMPLEX(2.1,3.5) to hold a complex number.
-// REAL()构造出的这种，就直接是Number了
+// 通过REAL()构造出的这种对象，就直接是Number了
 // Number是C的“联合”union，是C++的std::variant，需要用match访问
 
 type StringOption = Option<String>;
@@ -74,7 +74,7 @@ match inExp
 end match;
 end match_exp;
 
-// uniontype 并不是结构体那样，所有变量都有一个，而是类似C的UNION或者C++ Variant这种
+
 // 每个时刻，只能有一种Record在联合体内部
 // 这是第三种情况：Structured Pattern Matching 结构化模式匹配
 /*

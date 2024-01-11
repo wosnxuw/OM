@@ -73,7 +73,7 @@ let local_var=10
 之后此变量可用于<%%>之中
 
 您必须在前面定义好所有的let变量，不允许执行过程中定义
-let变量的值可以继承if-else的结果
+let变量的值可以继承if-else、match case等语句的结果
 
 ##### buffer
 buffer（全小写）是一个关键字
@@ -102,17 +102,58 @@ let &what += <<fuck>>
 这个内容实际上是MetaModelica的内容
 请注意match并不是switch
 这是函数式编程中常用的一种叫做“模式匹配”的方法
+这部分看MetaModelica相关的内容
+
+##### 使用大括号{}来构造列表
+这样支持您现场构造列表，比如
+{"a","b","c"} |> x => 'U<%x%>!'
+这个表达式将会产生列表：
+{"Ua!", "Ub!", "Uc!"} 
+最终会转化成字符串形式：
+"Ua!Ub!Uc!"
 
 ##### 管道
 这个内容也是函数式编程的思想
 类比：管道是python的列表推导式，目的是产生新列表，而不是取出做普通的迭代
-这个列表，如果你不接住
+这个列表，如果你不接住(用一个变量接受返回值)
 新列表的每个元素会首尾相接，产生新的一个字符串
 接住了，就是一个新列表
 
 列表 |> 代表元素 => 操作表达式
 
 可以参考list_use.tpl内容
+
+使用()将整个表达式括起来，可以提高可读性，但是不强制
+我检查了一下CodegenC.tpl的内容，大部分没有使用括号
+一般就是let xxx = 管道 ; separator="," 
+这样子
+
+##### 使用管道来模式匹配
+在Susan中，一个列表中元素的类型可以不一致
+参见list_use.tpl
+这样，使用模式匹配，可以单独提取符合类型的元素
+element-list |> elem-pattrn => template-expression 
+比如：
+```Susan
+template intConstantsList(list<Exp> expLst) ::= 
+ (expLst |> ICONST(__) => value ;separator=", ")
+end intConstantsList;
+```
+相当于把expLst里，是INCONST这种类型的拿出来了，至于value是从哪来的，好像是说，如果__自动展开作用域的话，就可以随意的使用那里面的变量
+
+
+```Susan
+<%variables |> var as VARIABLE(__) => '<%varType(var)%> <%cref(var.name)%>;' ;separator="\n"%> 
+```
+使用一个别名，使得类型匹配的时候，后续也可以使用别名
+
+##### hasindex fromindex
+elements |> elem-pattrn [hasindex myindex0 [fromindex startindex ] ] => templateexpression 
+计数开始是0
+
+//待完善?
+我不清楚hasindex是不是就意味着只能取出一个元素
+
 
 ##### 调用MetaModelica函数
 每个tpl文件，可以导入多个metamodelica interface package
@@ -134,3 +175,5 @@ let &what += <<fuck>>
 
 ##### tpl调另一个tpl
 和调modelica的区别在于，import是否有interface语句
+调modelica有interface
+调tpl没有

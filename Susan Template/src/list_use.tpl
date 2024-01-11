@@ -9,6 +9,9 @@ end list_1;
 
 template list_2(list<String> names) ::=
 let xxx_name = (names |> name => 'xxx_<%name%>' ;separator=", ")
+let test_list0 = {1,2,3}
+let test_list1 = {"1","2","3"}
+let test_list2 = {1,"2",3} //ok
 //let必须写在开头，否则会报end相关错误
 <<
 Hello <%(names |> name => <<Mr.<%name%> >> ;separator=", ")%>

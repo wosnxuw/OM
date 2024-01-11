@@ -18,6 +18,7 @@ algorithm
     // Pattern-matching using the cons operator
     case head::tail then head + delimiter + myStringDelimitList(tail,delimiter);
     // :: 是拼接符。因此head::tail也构造了一个列表，这个列表必然长度大于1
+    //注意head是String类型，而tail是StringList，这保证了{head}一定有一个元素
   end match;
 end myStringDelimitList;
 end list_use;
