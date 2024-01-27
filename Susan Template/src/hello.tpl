@@ -2,7 +2,9 @@ package hello
 import interface MyInterface;
 template tp(Real x) ::= 
     if x then
-    <<x <%(x+1)%>>>
+    <<
+        print: <%x%>
+    >>
     else
     <<x>>
     

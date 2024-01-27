@@ -1,2 +1,4 @@
 loadFile("a.mo");
+setCommandLineOptions("-d=dumpSimCode");
+/*这个flag，应该在~\OMCompiler\Compiler\Util\Flags.mo中寻找*/
 simulate(a);
