@@ -20,6 +20,8 @@ def template_function(p: int) -> str:
     return f"get : {p}"
 ```
 
+<<>>中，不允许什么都不写，即空串
+
 #### 如何运行.tpl文件？
 
 Susan Template文件是无法直接运行的，必须转化为MetaModelica
@@ -94,6 +96,8 @@ if else那行也没有分号；
 
 既然有返回值，那么一个变量=if xxx 是可以的
 
+
+
 ##### 生成文件
 
 生成的mo文件的function中
@@ -116,10 +120,12 @@ template函数必然返回Text类型，这是没办法修改的
 而if的条件处（根据文档）是没有Text的
 
 ##### 定义变量
-重要！
-实际上这个说法并不准确，是叫做“let Binding of Local Named Text Values ”
-用let关键字，将一块模板表达式绑定到变量上
-也就是说let后面的那个变量，是一个Text类型的东西
+
+不管是什么变量，最好不要以`_`开头，不然的话，在模式匹配里，`_`会被认为是通配符（它没有再继续看，就直接认定通配符了），导致无法编译
+
+定义变量时，要根据右侧的结果决定变量的类型
+如果右侧是一个模板函数，或者是字面量，那么let后的变量是一个Text类型
+如果右侧是一个MetaModelica函数，那么let的变量可以就具类型
 
 举例：
 let x = 1
@@ -132,6 +138,16 @@ let items={"xxx","yyy","zzz"}
 <<<%{"a","b","c"} |> x => 'U<%x%>!'%>>>
 才能够输出Ua!Ub!Uc!
 
+```susan
+template crefSubIsScalarHuman(DAE.ComponentRef cref) ::= 
+ let resBool = crefSubIsScalar(cref) 
+ if resBool then
+ "this cref has scalar subscript" 
+ else 
+ "this cref does not have scalar subscript" 
+end crefSubIsScalarHuman; 
+```
+这里，resBool是一个bool类型的。同时能够用作if的条件，否则，如果所有的变量都是Text类型，那么if后面就不能放置任何let的变量。
 
 文档说Susan是strongly typed，这和声明时是否指定类型无关
 比如python时动态类型+强类型，强类型只是要求类型转化严格执行
