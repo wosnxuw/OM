@@ -85,8 +85,6 @@ end for;
 
 Function基本的样子是这样。
 
-然后就是，这个东西是单独的一个文件，并不是别的文件的一部分。
-
 ```modelica
 function fun
 	input Real in1=10;
@@ -150,7 +148,22 @@ der(y)=0;
 
 
 
+### Modelica多文件
+假设有一个model文件和一个function文件，调用函数
+在OMEdit中，同时打开两个文件，不需要import语句，就可以使用函数的内容
 
+但是用omc直接编译model，两个文件放在同一个文件夹下，不行（不写import的话）
+如果要写import，应该是写在`model x end x;`之间，不过这也不行
+
+正确的做法：
+omc Model.mo Modelica #will first load the Modelica library and then produce 
+ flattened Model on standard output
+omc Model1.mo Model2.mo #will load both Model1.mo and Model2.mo, and produce 
+ flattened Model1 on standard output
+
+另外，modelica不限制一个.mo文件只包含一个model或者function
+比如上面那俩，你可以写一个文件里（modelica似乎没有package）
+但需要在调用函数前实现函数，函数要写model上面
 
 ### MSL Modelica Standard Libary
 
