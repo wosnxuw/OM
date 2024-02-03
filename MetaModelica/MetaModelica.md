@@ -3,3 +3,5 @@
 
 run.mos 是从源代码里抄录的
 `omc run.mos`可以将数据写入.mat文件
+
+当你使用VSCode时，不要更换主题为"Visual Studio Dark"，使用默认主题，否则将无法正确显示代码高亮
