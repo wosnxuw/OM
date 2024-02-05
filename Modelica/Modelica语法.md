@@ -164,6 +164,7 @@ omc Model1.mo Model2.mo #will load both Model1.mo and Model2.mo, and produce
 另外，modelica不限制一个.mo文件只包含一个model或者function
 比如上面那俩，你可以写一个文件里（modelica似乎没有package）
 但需要在调用函数前实现函数，函数要写model上面
+这种"TotalModel"只能通过mos的loadModel或者omc编译，不允许直接在OMEdit中打开
 
 ### MSL Modelica Standard Libary
 

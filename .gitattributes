@@ -1,2 +1,2 @@
-*.mo linguist-language=modelica
-*.tpl linguist-language=susan
+*.mo linguist-language=Modelica
+*.tpl linguist-language=Susan
