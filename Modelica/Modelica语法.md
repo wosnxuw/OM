@@ -1,3 +1,5 @@
+这本笔记的内容主要来自于BV1Mz4y1S73w
+
 ### 1、通用语法
 
 一个Model基本的构型如下：
@@ -117,13 +119,11 @@ input可以设置默认值。如果有默认值，可以调用时不传递那个
 如果你只想要返回值的一个，你就不用写括号了 out=fun(in1,in2)
 
 
-
 ### 3、等式语法
 
 核心：建立平衡模型
 
 然后使得未知变量的数量，与等式的数量一致
-
 
 
 model和block应该是最常见的两个结构，名称一般建议是大驼峰。函数名建议是小写。
@@ -147,49 +147,48 @@ end if;
 der(y)=0;
 
 
-
 ### Modelica多文件
 假设有一个model文件和一个function文件，调用函数
+
 在OMEdit中，同时打开两个文件，不需要import语句，就可以使用函数的内容
 
 但是用omc直接编译model，两个文件放在同一个文件夹下，不行（不写import的话）
-如果要写import，应该是写在`model x end x;`之间，不过这也不行
+
+如果要写import，应该是写在`model x`与`end x;`之间，不过这也不行（根据OMNoteBook第10章，导入包教程）
 
 正确的做法：
-omc Model.mo Modelica #will first load the Modelica library and then produce 
- flattened Model on standard output
-omc Model1.mo Model2.mo #will load both Model1.mo and Model2.mo, and produce 
- flattened Model1 on standard output
+```shell
+omc Model.mo Modelica #will first load the Modelica library and then produce flattened Model on standard output
+
+omc Model1.mo Model2.mo #will load both Model1.mo and Model2.mo, and produce flattened Model1 on standard output
+```
 
 另外，modelica不限制一个.mo文件只包含一个model或者function
-比如上面那俩，你可以写一个文件里（modelica似乎没有package）
+
+比如上面那俩model，你可以写一个文件里（modelica似乎没有package）
+
 但需要在调用函数前实现函数，函数要写model上面
-这种"TotalModel"只能通过mos的loadModel或者omc编译，不允许直接在OMEdit中打开
 
-### MSL Modelica Standard Libary
 
-Block 强因果关系模型
+### MSL Modelica Standard Library 标准库
 
-包含一个或多个input output连接器
+你可以在OM中搜索使用的model的名字来迅速找到它
 
-用于信号生成和信号处理
+Modelica.Blocks:
+基本输入输出
 
-Block.Sources：信号发生器，基于时间，通过参数影响形状
+Modelica.Blocks.Sources:
+输入源
 
-constant 常数
+Modelica.StateGraph
+状态机
 
-sine cosine
+Modelica.Math
+数学函数
 
-振幅 amplitude
+Modelica.Math.Polynomials
+多项式，包含求微积分的函数
 
-RealExpression 有用的
-
-代表一个实型表达式，可以固定值，可以表达式，可以变量
-
-combiTImeTable
-
-类似一个矩阵
-
-Clocked StateGraph 状态机
-
-Math Constant 辅助应用
+Modelica.Constants
+常量，直接使用常量即可
+circumference = 2 * Modelica.Constants.pi * radius;

@@ -4,8 +4,9 @@
 // 定义类有一个简短的语法，通常用于为现有类引入更多信息丰富的类型名称。
 class Voltage = Real(Unit = "V");
 //与用type关键字作用相同
-type Voltage =Real;
+type Voltage = Real;
 //个人理解：这个type好比C中的typedef，只是为Real类引入了一个新的名字
+//但是位置是反的 typedef int my_int    type my_Real = Real
 //type关键字可以把一个数组定义为一个“类”
 type Matrix10 = Real [10,10];
 //在大多数情况下，短类定义只是定义类的较短语法，这些类也可以使用标准继承语法定义:
@@ -28,7 +29,7 @@ end C1;
 
 //这些类的类名都是小写的
 
-//Class是没有任何限制的类，connector、model、function、record等等是替代class的关键字，而这些也是类，但是是受限的（或增强——
+//Class是没有任何限制的类，connector、model、function、record等等是替代class的关键字，而这些也是类，但是是受限的（或增强)
 //model和class基本相同。model不能用于connection中
 //record是一个记录的类。建议定义变量，不允许存在equation语句。不能用于connection中
 //type常用于引入新的类名称。一般情况下，type扩展Real，Integer，数组，record

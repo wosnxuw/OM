@@ -63,23 +63,26 @@ end ComplexNumbers;
 
 //练习
 encapsulated package Geometry
-    constant Real PI=3.14;
-    type Distance =Real (unit="m") //单位：米
-    function Distance
-        input x1
-        input x2
-        input y1
-        input y2
-        output d
-    algorithm
-        d := sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2))
-    end Distance;
 
-    function RectangleArea
+  constant Real PI=3.14;
+  type Distance =Real (unit="m") //单位：米
+  
+  function Distance
+    input x1
+    input x2
+    input y1
+    input y2
+    output d
+  algorithm
+      d := sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2))
+  end Distance;
+
+  function RectangleArea
     input Distance B;
     input Distance H;
     output Distance area;
-    algorithm
-        area := B*H;
-    end RectangleArea;
+  algorithm
+    area := B*H;
+  end RectangleArea;
+
 end Geometry;

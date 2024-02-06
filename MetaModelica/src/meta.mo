@@ -32,7 +32,7 @@
 //Meta那个手册已经是2011年的了
 //现在实数之间的运算符和整数一样，不用加.
 
-model t
+model meta
 
 function string1
   input Integer x;
@@ -45,17 +45,17 @@ algorithm
 end string1;
 
 function ios
-input Stream istream;
-algorithm
-print("this"); //print是内置函数
+  input Stream istream;
+  algorithm
+    print("this"); //print是内置函数?
 end ios;
 
 //函数可以作为参数
 function add1 "Add 1 to integer input argument"
- input Integer x;
- output Integer y;
+  input Integer x;
+  output Integer y;
 algorithm
- y := x+1;
+  y := x+1;
 end add1;
 
 function listMap /*
@@ -63,62 +63,65 @@ function listMap /*
 ** for each element, producing a new list.
 ** For example listMap({1,2,3}, intString) => { "1", "2", "3"}
 */
- input list<Type_a> in_aList;
- input FuncType inFunc;
- output list<Type_b> out_bList;
+  input list<Type_a> in_aList;
+  input FuncType inFunc;
+  output list<Type_b> out_bList;
 public
- replaceable type Type_a subtypeof Any;
- replaceable type Type_b subtypeof Any;
- function FuncType
- replaceable type Type_b subtypeof Any;
- input Type_a in_a;
- output Type_b out_b;
- end FuncType;
+  replaceable type Type_a subtypeof Any;
+  replaceable type Type_b subtypeof Any;
+  function FuncType
+  replaceable type Type_b subtypeof Any;
+  input Type_a in_a;
+  output Type_b out_b;
+  end FuncType;
 algorithm
- out_bList:=
- matchcontinue (in_aList,inFunc)
- local
- Type_b first_1;
- list<Type_b> rest_1;
- Type_a first;
- list<Type_a> rest;
- FuncType fn;
- case ({},_) then {};
- case (first :: rest,fn)
- equation
- first_1 = fn(first);
- rest_1 = listMap(rest, fn); then first_1 :: rest_1;
- end matchcontinue;
+  out_bList:=
+  matchcontinue (in_aList,inFunc)
+  local
+    Type_b first_1;
+    list<Type_b> rest_1;
+    Type_a first;
+    list<Type_a> rest;
+    FuncType fn;
+  case ({},_) then {};
+  case (first :: rest,fn)
+  equation
+    first_1 = fn(first);
+    rest_1 = listMap(rest, fn); 
+  then first_1 :: rest_1;
+  end matchcontinue;
 end listMap;
 
 
 // 在这个函数里，match-case里放置了equation，所有这个等式能够失败，那么函数失败。
 function sum
- input Integer inInteger;
- input Integer in_n;
- output Integer outRes;
+  input Integer inInteger;
+  input Integer in_n;
+  output Integer outRes;
 algorithm
- outRes :=
- matchcontinue (inInteger,in_n)
- local Integer i,n,i1,res1;
- case (i,n)
- equation
- true = (i>n); then true;
- case (i,n)
- equation
- false = (i>n);
- i1 = i+1; 
- res1 = sum(i1,n); then i+res1;
- end matchcontinue;
+  outRes :=
+  matchcontinue (inInteger,in_n)
+  local Integer i,n,i1,res1;
+  case (i,n)
+  equation
+  true = (i>n); then true;
+  case (i,n)
+  equation
+  false = (i>n);
+  i1 = i+1; 
+  res1 = sum(i1,n); then i+res1;
+  end matchcontinue;
 end sum;
 
 
 
-Real a =3.14;
+Real a = 3.14;
 Real b;
 equation
 a*b = 32.9*3.4;
-end t;
+
+
+end meta;
 
 // 逻辑判断是and not or <>（NEQ）
 

@@ -20,6 +20,7 @@ end dog;
 model DogInst
     Dog d;
 end DogInst;
+
 // rename
 model DogTim
     Dog d(name="Tim");
@@ -37,23 +38,12 @@ end average;
 //call function
 
 //调用的时候类似C（如果在equation中调用）
-//目前不清楚如何将这个类导入那个类
 
-// ！！！关于如何引入函数
 /*
-你只需要把model和function的源文件放一个文件夹下就行
-不需要显示的引入
-如果要使用包，似乎不需要在model里import进来
-只需要modelica需要加载这个包（打开这个文件），不能不打开？
-
-然后同一个包里的同等地位的函数之间互相可见
-直接就能调用。甚至不要求前后定义顺序关系。
-
 允许递归函数
 
 函数是无法模拟的
 所以不要omc xxx.mo(函数)
-
 */
 
 class AverageTest
@@ -111,7 +101,7 @@ model BobBirthyear
 end BobBirthyear;
 
 // Partial Class “部分类”，和其他语言的抽象类是一码事
-// 例子里写了一个类，但是方程数不够，所以无法解。用一个子类继承这个抽象类，加一个方程，就能解了。
+// 例子里写了一个类，但是方程数不够，所以无法解。用一个子类继承这个抽象类，加一个方程，就能解了
 // 当方程数少于位置变量数时，可以考虑这个关键字
 
 
@@ -124,7 +114,7 @@ class ArrayDim
 end ArrayDim;
 
 // * 重载
-/*乘法运算符*在向量之间使用时是标量积，在矩阵之间使用时是矩阵乘法，在数组和标量之间使用时是元素乘法*/
+// 乘法运算符 * 在向量之间使用时是标量积，在矩阵之间使用时是矩阵乘法，在数组和标量之间使用时是元素乘法
 // 每个元素乘2
 function ElementWiseMultiplication
    input  Real[3] positionvector;

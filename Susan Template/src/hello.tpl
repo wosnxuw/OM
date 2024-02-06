@@ -1,19 +1,21 @@
 package hello
 import interface MyInterface;
 template tp(Real x) ::= 
-    if x then
-    <<
-        print: <%x%>
-    >>
-    else
-    <<x>>
-    
+  if x then
+  <<
+    print: <%x%>
+  >>
+  else
+  <<
+    x
+  >>
 end tp;
+
 template ng(Real y, Text &arg) ::=
-    let local_var= fu.crefSubIsScalar(10)
-    let &what = buffer ""
-    let &what += <<this>>
-    if y then
-    <<this is <%local_var%>>>
+  let local_var= fu.crefSubIsScalar(10)
+  let &what = buffer ""
+  let &what += <<this>>
+  if y then <<this is <%local_var%>>>
 end ng;
+
 end hello;
