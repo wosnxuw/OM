@@ -338,6 +338,20 @@ else (allEquations |> eqs => (eqs |> eq => equation_(eq); separator="\n"); separ
 
 else这里，当allEquations是一个数组，eqs是每一个变量，然后括号里的推导式还是冗余的。
 
+##### 推导式的规范性要求
+```susan
+  let fncalls = (allEquationsPlusWhen |> eq hasindex i0 =>
+                    let &eqfuncs += equation_impl(-1, -1, eq, contextSimulationDiscrete, modelNamePrefix, false)
+                    equation_call(eq, modelNamePrefix)
+                    ;separator="\n")
+```
+
+这里请注意换行符，因为susan语句结束时，不需要`；`来结束
+
+这里，eqfuncs是一个buffer，这里为这个buffer添加内容，但是这些内容并不会对fncalls产生影响，只有后面的equation_call会像fncalls中添加内容，并且是添加多个内容
+
+也就是说`let &eqfuncs += equation_impl(-1, -1, eq, contextSimulationDiscrete, modelNamePrefix, false)`这句话在这个推导式的第三项，没有为推导式添加内容，仅仅是进行一个计算
+
 ##### 调用MetaModelica函数
 每个tpl文件，可以导入多个metamodelica interface package
 

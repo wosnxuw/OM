@@ -1,0 +1,9 @@
+loadFile("multimodel.mo");
+setDebugFlags("disableRecordConstructorOutput");
+setCompilerFlags("d=disableRecordConstructorOutput");
+//setCommandLineOptions("+s +simCodeTarget=ExperimentalEmbeddedC");
+//getCFlags();
+//generateCode(useRecord);
+//translateModel(UseFunction);
+//setCommandLineOptions("+simCodeTarget=ExperimentalEmbeddedC");
+//simulate(UseFunction);
